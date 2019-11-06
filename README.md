@@ -1,1 +1,1 @@
-# first commit - dynamic mapping
+# Repo for dynamic plots/maps using shiny
