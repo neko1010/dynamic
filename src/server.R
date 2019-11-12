@@ -9,7 +9,7 @@ server = function(input, output, session){
     
     ## reactive dataframe assigned to local object, df and passed to leaflet
     m = leaflet(data = df) %>%  ## creating map
-      addTiles() %>%  ## adding open street map widgets
+      addTiles() %>%  ## adding open street map (default)
       
       ##Shiny magic- adding pop-up info from df and specific lat/lons
       addMarkers(lng = ~routes.longitude, lat = ~routes.latitude,
@@ -21,7 +21,8 @@ server = function(input, output, session){
 			       "Crag: ", df$Crag, "<br>",
 			       "Area: ", df$Area, "<br>",
 			       "State/Province: ", df$State))
-      #setView(lng=-73.935242, lat=40.730610, zoom - 10)  ##NYC
+      
+      #setView(lng=-114.4701, lat=42.5558, zoom = 10)  ##Twin Falls Yalls
     m
   })
 }
