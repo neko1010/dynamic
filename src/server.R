@@ -11,9 +11,13 @@ server = function(input, output, session){
     m = leaflet(data = df) %>%  ## creating map
       addTiles() %>%  ## adding open street map (default)
       
+      
       ##Shiny magic- adding pop-up info from df and specific lat/lons
       addMarkers(lng = ~routes.longitude, lat = ~routes.latitude,
-                 popup = paste("Route Name: ", df$routes.name, "<br>", ## "<br>" is \n i think
+                 
+          ## cluster markers https://rstudio.github.io/leaflet/markers.html
+          clusterOptions = markerClusterOptions(),
+                popup = paste("Route Name: ", df$routes.name, "<br>", ## "<br>" is \n i think
 			       "Grade: ", df$routes.rating, "<br>",
 			       "Type: ", df$routes.type, "<br>",
 			       "Pitches :", df$routes.pitches, "<br>", 
