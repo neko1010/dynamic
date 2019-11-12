@@ -9,7 +9,15 @@ server = function(input, output, session){
     
     ## reactive dataframe assigned to local object, df and passed to leaflet
     m = leaflet(data = df) %>%  ## creating map
-      addTiles() %>%  ## adding open street map (default)
+      addTiles("http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+                             attribution = paste(
+                               "&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors",
+                               "&copy; <a href=\"http://cartodb.com/attributions\">CartoDB</a>"
+                             )
+      ) %>% setView(-115.14, 43.99, zoom = 5)%>% 
+      
+      ## adding open street map (default)
+      
       
       ##Shiny magic- adding pop-up info from df and specific lat/lons
       addMarkers(lng = ~routes.longitude, lat = ~routes.latitude,
